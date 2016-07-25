@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="Home" />
+    <item
+        android:id="@+id/setting"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="Setting">
+        <menu>
+            <group
+                android:id="@+id/group"
+                android:checkableBehavior="single">
+                <item
+                    android:icon="@android:drawable/ic_menu_upload"
+                    android:id="@+id/settting1"
+                    android:checkable="true"
+                    android:title="Setting1" />
+                <item
+                    android:icon="@android:drawable/ic_menu_upload"
+                    android:id="@+id/setting12"
+                    android:checkable="true"
+                    android:title="Setting12" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/favorite"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="Favorite">
+        <menu >
+            <item
+                android:icon="@android:drawable/arrow_up_float"
+                android:id="@+id/fv1"
+                android:title="favorite1" />
+            <item
+                android:id="@+id/fv2"
+                android:icon="@android:drawable/arrow_up_float"
+                android:title="favorite2" />
+        </menu>
+
+    </item>
+</menu>
