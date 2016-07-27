@@ -1,18 +1,21 @@
 package com.example.poiuyt.androiddesignsupport;
 
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,30 +25,29 @@ public class MainActivity extends AppCompatActivity {
     PagerAdapter adapter;
     DrawerLayout da;
     NavigationView na;
+    FloatingActionButton fa;
+    ActionBar actionBar;
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initComponent();
+        initToolbar();
+        bindEventHandlers();
+    }
+
+
+    private void initComponent() {
         tabMain = (TabLayout) findViewById(R.id.tab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         viewPager = (ViewPager) findViewById(R.id.pager);
         da = (DrawerLayout) findViewById(R.id.dr);
         na = (NavigationView) findViewById(R.id.na);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Android Design");
-        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.icv);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        fa = (FloatingActionButton) findViewById(R.id.fa);
 
-        na.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                da.closeDrawers();
-                return true;
-            }
-        });
 
         tabMain.addTab(tabMain.newTab().setText("Tab1"));
         tabMain.addTab(tabMain.newTab().setText("Tab2"));
@@ -55,6 +57,30 @@ public class MainActivity extends AppCompatActivity {
         adapter = new PagerAdapter(getSupportFragmentManager(), tabMain.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabMain));
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Android Design");
+        actionBar.setHomeAsUpIndicator(R.mipmap.icv);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void bindEventHandlers() {
+
+        na.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                /**Do st here
+                 */
+                item.setChecked(true);
+                da.closeDrawers();
+                return true;
+            }
+        });
+
+
         tabMain.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -71,7 +97,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        fa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "You have clicked", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Util.showAToast(MainActivity.this, "You do it");
+                    }
+                }).show();
+            }
+        });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
