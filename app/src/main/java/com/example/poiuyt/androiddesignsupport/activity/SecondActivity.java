@@ -1,4 +1,4 @@
-package com.example.poiuyt.androiddesignsupport;
+package com.example.poiuyt.androiddesignsupport.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import com.example.poiuyt.androiddesignsupport.R;
+
 /**
  * Created by poiuyt on 7/25/16.
  */
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends BaseActivity{
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
 

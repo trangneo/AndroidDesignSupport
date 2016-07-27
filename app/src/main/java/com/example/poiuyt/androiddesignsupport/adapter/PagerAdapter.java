@@ -1,8 +1,13 @@
-package com.example.poiuyt.androiddesignsupport;
+package com.example.poiuyt.androiddesignsupport.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.poiuyt.androiddesignsupport.fragment.Tab1;
+import com.example.poiuyt.androiddesignsupport.fragment.Tab2;
+import com.example.poiuyt.androiddesignsupport.fragment.Tab3;
+import com.example.poiuyt.androiddesignsupport.fragment.Tab4;
 
 /**
  * Created by poiuyt on 7/21/16.

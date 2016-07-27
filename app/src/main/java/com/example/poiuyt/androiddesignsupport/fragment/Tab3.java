@@ -1,4 +1,4 @@
-package com.example.poiuyt.androiddesignsupport;
+package com.example.poiuyt.androiddesignsupport.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -6,14 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.poiuyt.androiddesignsupport.R;
+
 /**
  * Created by poiuyt on 7/21/16.
  */
 
-public class Tab4 extends Fragment {
-
+public class Tab3 extends  Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_layout4, container, false);
+        return inflater.inflate(R.layout.tab_layout3, container, false);
     }
+
 }

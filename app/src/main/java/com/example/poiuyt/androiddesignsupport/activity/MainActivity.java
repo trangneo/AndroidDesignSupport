@@ -1,6 +1,5 @@
-package com.example.poiuyt.androiddesignsupport;
+package com.example.poiuyt.androiddesignsupport.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,14 +9,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.poiuyt.androiddesignsupport.adapter.PagerAdapter;
+import com.example.poiuyt.androiddesignsupport.R;
+import com.example.poiuyt.androiddesignsupport.utils.Util;
+
+public class MainActivity extends BaseActivity {
 
     TabLayout tabMain;
     Toolbar toolbar;
@@ -32,15 +33,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        initComponent();
-        initToolbar();
-        bindEventHandlers();
+
     }
 
 
-    private void initComponent() {
+    protected void initComponent() {
+        setContentView(R.layout.activity_main);
         tabMain = (TabLayout) findViewById(R.id.tab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabMain));
     }
 
-    private void initToolbar() {
+    protected void initToolbar() {
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setTitle("Android Design");
@@ -67,14 +66,13 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void bindEventHandlers() {
+    protected void bindEventHandlers() {
 
         na.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 /**Do st here
                  */
-                item.setChecked(true);
                 da.closeDrawers();
                 return true;
             }

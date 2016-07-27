@@ -1,4 +1,4 @@
-package com.example.poiuyt.androiddesignsupport;
+package com.example.poiuyt.androiddesignsupport.utils;
 
 import android.content.Context;
 import android.widget.Toast;
