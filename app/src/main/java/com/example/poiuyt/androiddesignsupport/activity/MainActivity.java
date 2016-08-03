@@ -1,21 +1,19 @@
 package com.example.poiuyt.androiddesignsupport.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.poiuyt.androiddesignsupport.adapter.PagerAdapter;
 import com.example.poiuyt.androiddesignsupport.R;
+import com.example.poiuyt.androiddesignsupport.adapter.PagerAdapter;
 import com.example.poiuyt.androiddesignsupport.utils.Util;
 
 public class MainActivity extends BaseActivity {
@@ -24,29 +22,24 @@ public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     ViewPager viewPager;
     PagerAdapter adapter;
-    DrawerLayout da;
-    NavigationView na;
     FloatingActionButton fa;
     ActionBar actionBar;
-
+    CoordinatorLayout coordinator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        initComponent();
+        initToolbar();
+        bindEventHandlers();
     }
 
 
     protected void initComponent() {
-        setContentView(R.layout.activity_main);
-        tabMain = (TabLayout) findViewById(R.id.tab);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        getLayoutInflater().inflate(R.layout.activity_main, coordinator_base);
+        tabMain = (TabLayout)  findViewById(R.id.tab);
         viewPager = (ViewPager) findViewById(R.id.pager);
-        da = (DrawerLayout) findViewById(R.id.dr);
-        na = (NavigationView) findViewById(R.id.na);
-        fa = (FloatingActionButton) findViewById(R.id.fa);
-
+        fa = (FloatingActionButton)  findViewById(R.id.fa);
 
         tabMain.addTab(tabMain.newTab().setText("Tab1"));
         tabMain.addTab(tabMain.newTab().setText("Tab2"));
@@ -59,6 +52,7 @@ public class MainActivity extends BaseActivity {
     }
 
     protected void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setTitle("Android Design");
@@ -67,17 +61,6 @@ public class MainActivity extends BaseActivity {
     }
 
     protected void bindEventHandlers() {
-
-        na.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                /**Do st here
-                 */
-                da.closeDrawers();
-                return true;
-            }
-        });
-
 
         tabMain.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -120,9 +103,14 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                da.openDrawer(GravityCompat.START);
+                openNavigation();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    public void openNavigation() {
+//        super.openNavigation();
+//    }
 }
